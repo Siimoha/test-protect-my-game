@@ -89,90 +89,14 @@
     e.preventDefault();
 });
 
-##Block bad bots
-RewriteEngine On 
-RewriteCond %{HTTP_USER_AGENT} ^BlackWidow [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Bot\ mailto:craftbot@yahoo.com [OR]
-RewriteCond %{HTTP_USER_AGENT} ^ChinaClaw [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Custo [OR]
-RewriteCond %{HTTP_USER_AGENT} ^DISCo [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Download\ Demon [OR]
-RewriteCond %{HTTP_USER_AGENT} ^eCatch [OR]
-RewriteCond %{HTTP_USER_AGENT} ^EirGrabber [OR]
-RewriteCond %{HTTP_USER_AGENT} ^EmailSiphon [OR]
-RewriteCond %{HTTP_USER_AGENT} ^EmailWolf [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Express\ WebPictures [OR]
-RewriteCond %{HTTP_USER_AGENT} ^ExtractorPro [OR]
-RewriteCond %{HTTP_USER_AGENT} ^EyeNetIE [OR]
-RewriteCond %{HTTP_USER_AGENT} ^FlashGet [OR]
-RewriteCond %{HTTP_USER_AGENT} ^GetRight [OR]
-RewriteCond %{HTTP_USER_AGENT} ^GetWeb! [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Go!Zilla [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Go-Ahead-Got-It [OR]
-RewriteCond %{HTTP_USER_AGENT} ^GrabNet [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Grafula [OR]
-RewriteCond %{HTTP_USER_AGENT} ^HMView [OR]
-RewriteCond %{HTTP_USER_AGENT} HTTrack [NC,OR]
-RewriteCond %{HTTP_USER_AGENT} ^Image\ Stripper [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Image\ Sucker [OR]
-RewriteCond %{HTTP_USER_AGENT} Indy\ Library [NC,OR]
-RewriteCond %{HTTP_USER_AGENT} ^InterGET [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Internet\ Ninja [OR]
-RewriteCond %{HTTP_USER_AGENT} ^JetCar [OR]
-RewriteCond %{HTTP_USER_AGENT} ^JOC\ Web\ Spider [OR]
-RewriteCond %{HTTP_USER_AGENT} ^larbin [OR]
-RewriteCond %{HTTP_USER_AGENT} ^LeechFTP [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Mass\ Downloader [OR]
-RewriteCond %{HTTP_USER_AGENT} ^MIDown\ tool [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Mister\ PiX [OR]
-RewriteCond %{HTTP_USER_AGENT} uuuu7u^Navroad [OR]
-RewriteCond %{HTTP_USER_AGENT} ^NearSite [OR]
-RewriteCond %{HTTP_USER_AGENT} ^NetAnts [OR]
-RewriteCond %{HTTP_USER_AGENT} ^NetSpider [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Net\ Vampire [OR]
-RewriteCond %{HTTP_USER_AGENT} ^NetZIP [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Octopus [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Offline\ Explorer [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Offline\ Navigator [OR]
-RewriteCond %{HTTP_USER_AGENT} ^PageGrabber [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Papa\ Foto [OR]
-RewriteCond %{HTTP_USER_AGENT} ^pavuk [OR]
-RewriteCond %{HTTP_USER_AGENT} ^pcBrowser [OR]
-RewriteCond %{HTTP_USER_AGENT} ^RealDownload [OR]
-RewriteCond %{HTTP_USER_AGENT} ^ReGet [OR]
-RewriteCond %{HTTP_USER_AGENT} ^SiteSnagger [OR]
-RewriteCond %{HTTP_USER_AGENT} ^SmartDownload [OR]
-RewriteCond %{HTTP_USER_AGENT} ^SuperBot [OR]
-RewriteCond %{HTTP_USER_AGENT} ^SuperHTTP [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Surfbot [OR]
-RewriteCond %{HTTP_USER_AGENT} ^tAkeOut [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Teleport\ Pro [OR]
-RewriteCond %{HTTP_USER_AGENT} ^VoidEYE [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Web\ Image\ Collector [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Web\ Sucker [OR]
-RewriteCond %{HTTP_USER_AGENT} ^WebAuto [OR]
-RewriteCond %{HTTP_USER_AGENT} ^WebCopier [OR]
-RewriteCond %{HTTP_USER_AGENT} ^WebFetch [OR]
-RewriteCond %{HTTP_USER_AGENT} ^WebGo\ IS [OR]
-RewriteCond %{HTTP_USER_AGENT} ^WebLeacher [OR]
-RewriteCond %{HTTP_USER_AGENT} ^WebReaper [OR]
-RewriteCond %{HTTP_USER_AGENT} ^WebSauger [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Website\ eXtractor [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Website\ Quester [OR]
-RewriteCond %{HTTP_USER_AGENT} ^WebStripper [OR]
-RewriteCond %{HTTP_USER_AGENT} ^WebWhacker [OR]
-RewriteCond %{HTTP_USER_AGENT} ^WebZIP [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Wget [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Widow [OR]
-RewriteCond %{HTTP_USER_AGENT} ^WWWOFFLE [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Xaldon\ WebSpider [OR]
-RewriteCond %{HTTP_USER_AGENT} ^Zeus
-RewriteRule ^.* - [F,L]
-//edit: removed ";" from last "}" because of javascript error
+
 </script>
 
 </head>
 
+
+
+<body oncontextmenu="return false">
 <body>
 <script src="https://connect.facebook.net/en_US/fbinstant.6.2.js"></script>
 
@@ -395,6 +319,79 @@ document.onkeydown = function (e) {
 	
 	
 	
+
+	<script>
+var opened =false;
+setInterval(function() {
+var devtools = /./;
+devtools.toString = function() {
+opened = true;
+}
+console.log('%c', devtools);
+if(opened){
+/*here you know it is opened so you can redirect him or send a message */
+}
+}, 1000);	
+		</script>
+		
+		<script type="text/javascript">
+eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('(3(){(3 a(){8{(3 b(2){7((\'\'+(2/2)).6!==1||2%5===0){(3(){}).9(\'4\')()}c{4}b(++2)})(0)}d(e){g(a,f)}})()})();',17,17,'||i|function|debugger|20|length|if|try|constructor|||else|catch||5000|setTimeout'.split('|'),0,{}))
+</script>
+
+
+	<script>
+var currentInnerHtml;
+var element = new Image();
+var elementWithHiddenContent = document.querySelector("#element-to-hide");
+var innerHtml = elementWithHiddenContent.innerHTML;
+
+element.__defineGetter__("id", function() {
+    currentInnerHtml = "";
+});
+
+setInterval(function() {
+    currentInnerHtml = innerHtml;
+    console.log(element);
+    console.clear();
+    elementWithHiddenContent.innerHTML = currentInnerHtml;
+}, 1000);
+	</script>	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</body>
 </body>
 
 </html>
