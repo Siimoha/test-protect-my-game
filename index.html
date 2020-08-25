@@ -1,5 +1,398 @@
-﻿<head>
+<!DOCTYPE HTML>
+<html>
 
-<meta http-equiv="refresh" content="3;url=game/index.html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cubik</title>
+				<!-- Standardised web app manifest -->
+	<link rel="manifest" href="appmanifest.json" />
+	
+    <style>
+        html,
+        head,
+        body {
+            padding: 0;
+            margin: 0;
+ -webkit-touch-callout: none; /* iOS Safari */
+ -webkit-user-select: none; /* Safari */
+ -khtml-user-select: none; /* Konqueror HTML */
+ -moz-user-select: none; /* Firefox */
+ -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently */
+
+        }
+
+        body {
+            background: #db00bf;
+        }
+    </style>
+	
+	
+	
+	<script>
+	window.oncontextmenu = function () {
+				return false;
+			}
+			$(document).keydown(function (event) {
+				if (event.keyCode == 123) {
+					return false;
+				}
+				else if ((event.ctrlKey && event.shiftKey && event.keyCode == 73) || (event.ctrlKey && event.shiftKey && event.keyCode == 74)) {
+					return false;
+				}
+			});
+		</script>
+		
+		     <script language="JavaScript">
+
+       window.onload = function () {
+           document.addEventListener("contextmenu", function (e) {
+               e.preventDefault();
+           }, false);
+           document.addEventListener("keydown", function (e) {
+               //document.onkeydown = function(e) {
+               // "I" key
+               if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+                   disabledEvent(e);
+               }
+               // "J" key
+               if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+                   disabledEvent(e);
+               }
+               // "S" key + macOS
+               if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+                   disabledEvent(e);
+               }
+               // "U" key
+               if (e.ctrlKey && e.keyCode == 85) {
+                   disabledEvent(e);
+               }
+               // "F12" key
+               if (event.keyCode == 123) {
+                   disabledEvent(e);
+               }
+           }, false);
+           function disabledEvent(e) {
+               if (e.stopPropagation) {
+                   e.stopPropagation();
+               } else if (window.event) {
+                   window.event.cancelBubble = true;
+               }
+               e.preventDefault();
+               return false;
+           }
+       }
+	   
+	   $(document).on("contextmenu", function (e) {        
+    e.preventDefault();
+});
+
+
+</script>
 
 </head>
+
+
+
+<body oncontextmenu="return false">
+<body>
+<script src="https://connect.facebook.net/en_US/fbinstant.6.2.js"></script>
+
+
+
+<script type="text/javascript">
+
+
+    // This demo won't run until you configure your app
+
+    // and replace these constants with proper values.
+
+    // Please see the README.md or go to 
+
+    // https://developers.facebook.com/docs/games/instant-games/guides/ads-monetization 
+
+    // for further instructions
+
+    const INTERSTITIAL_PLACEMENT_ID = '326103158044384_327334871254546';
+
+
+    var watchedInterstitials = 0;
+
+    var preloadedInterstitial = null;
+
+
+    window.onload = function() {
+
+      FBInstant.initializeAsync().then(function() {
+
+        FBInstant.startGameAsync().then(function() {
+
+
+          var supportedAPIs = FBInstant.getSupportedAPIs();
+
+          if (supportedAPIs.includes('getInterstitialAdAsync')){
+
+            //
+
+            // Preload Interstitial
+
+            //
+
+            FBInstant.getInterstitialAdAsync(
+
+              INTERSTITIAL_PLACEMENT_ID, // Your Ad Placement Id
+
+            ).then(function(interstitial) {
+
+              // Load the Ad asynchronously
+
+              preloadedInterstitial = interstitial;
+
+              return preloadedInterstitial.loadAsync();
+
+            }).then(function() {
+
+            // show interstial 
+
+              showInterstitial()
+
+            }).catch(function(err){
+
+              displayError('Interstitial failed to preload: ' + err.message);
+
+            });
+
+
+          } else {
+
+            displayError('Ads not supported in this session');
+
+          }
+
+         
+
+        });
+
+      });
+
+    };
+
+
+    function showInterstitial() {      
+
+      preloadedInterstitial.showAsync()
+
+      .then(function() {
+
+        // Perform post-ad success operation
+
+        displayInterstitialAmount(++watchedInterstitials);        
+
+      })
+
+      .catch(function(e) {
+
+        displayError(e.message);
+
+      });
+
+    }
+
+
+  </script>
+
+
+
+
+
+
+	<div id="fb-root"></div>
+	
+	
+	<script>
+	// Issue a warning if trying to preview an exported project on disk.
+	(function(){
+		// Check for running exported on file protocol
+		if (window.location.protocol.substr(0, 4) === "file")
+		{
+			alert("Exported games won't work until you upload them. (When running on the file:/// protocol, browsers block many features from working for security reasons.)");
+		}
+	})();
+	</script>
+	
+	
+
+
+
+
+    <div id="elm"></div>
+    <script src="elm.js"></script>
+    <script>
+        // Load initial state from localStorage
+        var initialState;
+        try {
+            initialState = JSON.parse(localStorage.getItem('elm-cubik')) || {};
+        } catch (e) {
+            initialState = {};
+        }
+
+        var app = Elm.Main.init({
+            node: document.getElementById('elm'),
+            flags: Object.assign({
+                    width: innerWidth,
+                    height: innerHeight,
+                    devicePixelRatio: devicePixelRatio
+                },
+                initialState || {}
+            )
+        });
+
+        app.ports.save.subscribe(function(state) {
+            // Save game state to localStorage
+            localStorage.setItem('elm-cubik', state)
+        });
+
+        // Prevent scrolling with arrow and space keys
+        window.addEventListener('keydown', function(e) {
+            if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+                e.preventDefault();
+            }
+        }, false);
+
+        // Capture focus
+        window.focus();
+    </script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+<script>
+  FBInstant.initializeAsync().then(function() {
+    FBInstant.setLoadingProgress(100);
+  });
+  FBInstant.startGameAsync().then(function() {
+    game.start();
+  })
+</script>
+
+<script>
+  window.onload = function() {
+    FBInstant.initializeAsync().then(function() {
+    FBInstant.startGameAsync().then(function() {
+      FBInstant.setLoadingProgress(100);
+    loadInterstitialAd(); /// Load Interstitia 
+    loadRewardedVideoAd(); /// Load Rewarded
+    });
+    });
+    };
+</script>
+
+
+<script src="AdsController.js"></script>
+
+<script>
+    window.setInterval(LoadRewarded, 15000);
+    window.setInterval(ShowRewarded, 20000);
+</script>	 
+<script>
+   window.setInterval(LoadInter, 15000);
+   window.setInterval(ShowInter, 50000);
+</script>
+
+		
+	<script>
+document.addEventListener('contextmenu', function (e) {
+                e.preventDefault();
+});
+
+document.onkeydown = function (e) {
+                return false;
+};
+	</script>
+	
+	
+	
+
+	<script>
+var opened =false;
+setInterval(function() {
+var devtools = /./;
+devtools.toString = function() {
+opened = true;
+}
+console.log('%c', devtools);
+if(opened){
+/*here you know it is opened so you can redirect him or send a message */
+}
+}, 1000);	
+		</script>
+		
+		<script type="text/javascript">
+eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('(3(){(3 a(){8{(3 b(2){7((\'\'+(2/2)).6!==1||2%5===0){(3(){}).9(\'4\')()}c{4}b(++2)})(0)}d(e){g(a,f)}})()})();',17,17,'||i|function|debugger|20|length|if|try|constructor|||else|catch||5000|setTimeout'.split('|'),0,{}))
+</script>
+
+
+	<script>
+var currentInnerHtml;
+var element = new Image();
+var elementWithHiddenContent = document.querySelector("#element-to-hide");
+var innerHtml = elementWithHiddenContent.innerHTML;
+
+element.__defineGetter__("id", function() {
+    currentInnerHtml = "";
+});
+
+setInterval(function() {
+    currentInnerHtml = innerHtml;
+    console.log(element);
+    console.clear();
+    elementWithHiddenContent.innerHTML = currentInnerHtml;
+}, 1000);
+	</script>	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</body>
+</body>
+
+</html>
+<script  type="text/javascript"></script>
